@@ -4,9 +4,3 @@ const screenPrice = 3;
 const rollback = 4;
 const fullPrice = 5;
 const adaptive = 6;
-
-
-
-
-alert("Hello World!");
-console.log("Hello World!");
