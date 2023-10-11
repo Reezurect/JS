@@ -10,15 +10,15 @@ const servicePrice1 = prompt("Сколько это будет стоить?");
 const service2 = prompt("Какой дополнительный тип услуг нужен?");
 const servicePrice2 = prompt("Сколько это будет стоить?");
 const fullPrice = screenPrice + servicePrice1 + servicePrice2;
-const servicePercentPrice = (fullPrice * (12 / 100));
+const servicePercentPrice = fullPrice - (fullPrice * (rollback / 100));
 
 
 switch (true) {
-    case fullPrice > 30000: alert("Даем скидку в 10%");
+    case fullPrice >= 30000: alert("Даем скидку в 10%");
         break;
-    case fullPrice > 15000 && fullPrice < 30000: alert("Даем скидку в 5%");
+    case fullPrice >= 15000 && fullPrice < 30000: alert("Даем скидку в 5%");
         break;
-    case fullPrice < 15000 && fullPrice > 0: alert("Скидка не предусмотрена");
+    case fullPrice >= 0 && fullPrice < 15000: alert("Скидка не предусмотрена");
     default: alert("Что то пошло не так");
 };
 
