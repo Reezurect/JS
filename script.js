@@ -1,10 +1,5 @@
 'use strict';
 
-const isString = (str, comma = false) => {
-    const pattern = comma ? /^[, а-яА-ЯёЁa-zA-Z]+$/ : /^[ а-яА-ЯёЁa-zA-Z]+$/;
-    return pattern.test(str);
-};
-
 const appData = {
     title: '',
     screens: [],
@@ -29,19 +24,18 @@ const appData = {
         return !isNaN(parseFloat(num)) && isFinite(num);
     },
     asking: function () {
-        appData.title = prompt("Как называется ваш проект?");
 
         do {
             appData.title = prompt("Как называется ваш проект?");
-        } while (!isString(appData.title))
+        } while (!isNaN(appData.title))
 
         for (let i = 0; i < 2; i++) {
-            let name = prompt("Какие типы экранов нужно разработать?");
-            let price = 0;
-
+            let name
             do {
                 name = prompt("Какие типы экранов нужно разработать?");
-            } while (!isString(name))
+            } while (!isNaN(appData.title))
+
+            let price = 0;
 
             do {
                 price = prompt("Сколько будет стоить данная работа?");
@@ -55,12 +49,12 @@ const appData = {
         };
 
         for (let i = 0; i < 2; i++) {
-            let name = prompt("Какой дополнительный тип услуг нужен?");
-            let price = 0;
-
+            let name
             do {
                 name = prompt("Какой дополнительный тип услуг нужен?");
-            } while (!isString(name))
+            } while (!isNaN(name))
+
+            let price = 0
 
             do {
                 price = prompt("Сколько это будет стоить?");
@@ -71,10 +65,13 @@ const appData = {
 
         appData.adaptive = confirm("Нужен ли адаптив на сайте?");
     },
+
     addPrices: function () {
-        for (let screen of appData.screens) {
-            appData.screenPrice += +appData.price;
-        }
+        const result = appData.screens.reduce(function (sum, item) {
+            console.log('sum: ', sum, 'item: ', item);
+            return sum + +item.price
+        }, 20000)
+        console.log(result);
 
         for (let key in appData.services) {
             appData.allServicePrices += appData.services[key];
